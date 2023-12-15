@@ -8,3 +8,4 @@ C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-win
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.csproj.CoreCompileInputs.cache
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.sourcelink.json
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.csproj.AssemblyReference.cache
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\G4bDev_Hôtellerie.MainForm.resources
