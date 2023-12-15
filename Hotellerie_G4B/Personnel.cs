@@ -67,9 +67,5 @@ namespace G4bDev_Hôtellerie
             throw new NotImplementedException();
         }
 
-        public void SuppPersonnel(int id)
-        {
-            DBconnector.SuppPersonnel(id);
-        }
     }
 }

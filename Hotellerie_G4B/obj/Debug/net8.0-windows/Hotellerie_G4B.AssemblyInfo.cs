@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hotellerie_G4B")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f534eae130f6ddb8db468bca2ba58a8376eafad7")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c60b5fd382ecd00651dfa56e76d89e059ab9d15")]
+>>>>>>> feature/SuppPersonnel
 [assembly: System.Reflection.AssemblyProductAttribute("Hotellerie_G4B")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hotellerie_G4B")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
