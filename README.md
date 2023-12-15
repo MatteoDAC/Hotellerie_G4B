@@ -18,7 +18,7 @@ Sacha Volery, Théo Brocard, Matteo Da Cunha
 
 For your project, you will need to add manually the MySql Package.
 
-Tools->Nuget Packet Manager->Package Manager Console
+Tools->Nuget Packet Manager->Package Manager Console ;
 
 ```
 [INPUT]
@@ -32,6 +32,8 @@ Restored C:\Users\pn44lvn\Desktop\g4bDev\G4bDev_Hôtellerie\G4bDev_Hôtellerie\G
 Successfully installed 'ZstdSharp.Port 0.7.1' to G4bDev_Hôtellerie
 Executing nuget actions took 743 ms
 Time Elapsed: 00:00:02.8070762
+
+```
 
 
 ## Desciption du projet 
