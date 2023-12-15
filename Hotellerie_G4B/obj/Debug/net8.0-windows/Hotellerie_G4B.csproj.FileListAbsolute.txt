@@ -1,0 +1,10 @@
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.FormListePersonnel.resources
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.FormPersonnel.resources
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.MainForm.resources
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.csproj.GenerateResource.cache
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.AssemblyInfoInputs.cache
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.AssemblyInfo.cs
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.csproj.CoreCompileInputs.cache
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.sourcelink.json
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.csproj.AssemblyReference.cache
