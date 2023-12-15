@@ -20,6 +20,19 @@ For your project, you will need to add manually the MySql Package.
 
 Tools->Nuget Packet Manager->Package Manager Console
 
+```
+[INPUT]
+PM> Install-Package MySQL.Data
+Restoring packages for C:\Users\pn44lvn\Desktop\g4bDev\G4bDev_Hôtellerie\G4bDev_Hôtellerie\G4bDev_Hôtellerie.csproj...
+Installing NuGet package MySQL.Data 8.2.0.
+Generating MSBuild file  C:\Users\pn44lvn\Desktop\g4bDev\G4bDev_Hôtellerie\G4bDev_Hôtellerie\obj\PrototypeDbConnector.csproj.nuget.g.targets.
+Writing assets file to disk. Path: C:\Users\pn44lvn\Desktop\g4bDev\G4bDev_Hôtellerie\G4bDev_Hôtellerie\obj\project.assets.json
+Restored C:\Users\pn44lvn\Desktop\g4bDev\G4bDev_Hôtellerie\G4bDev_Hôtellerie\G4bDev_Hôtellerie.csproj (in 183 ms).
+[...]
+Successfully installed 'ZstdSharp.Port 0.7.1' to G4bDev_Hôtellerie
+Executing nuget actions took 743 ms
+Time Elapsed: 00:00:02.8070762
+
 
 ## Desciption du projet 
 
