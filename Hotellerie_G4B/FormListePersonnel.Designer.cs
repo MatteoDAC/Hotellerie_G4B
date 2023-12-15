@@ -9,6 +9,8 @@ namespace G4bDev_Hôtellerie
         private ListBox listePersonnelListBox;
         private Button supprimerPersonnelSelectionneButton;
         private List<Personnel> listePersonnel;
+        public string FirstNamePersonnelSelectionne { get; private set; }
+        public string LastNamePersonnelSelectionne { get; private set; }
 
         public FormListePersonnel(List<Personnel> personnelList)
         {
@@ -72,12 +74,18 @@ namespace G4bDev_Hôtellerie
         {
             if (listePersonnelListBox.SelectedItem != null)
             {
+                // Récupérer l'index de l'élément sélectionné
                 int selectedIndex = listePersonnelListBox.SelectedIndex;
 
+                // Récupérer l'objet Personnel correspondant à l'index sélectionné
                 Personnel personnelSelectionne = listePersonnel[selectedIndex];
 
-                DialogResult = DialogResult.OK;
+                // Définir les propriétés FirstNamePersonnelSelectionne et LastNamePersonnelSelectionne
+                FirstNamePersonnelSelectionne = personnelSelectionne.FirstName;
+                LastNamePersonnelSelectionne = personnelSelectionne.LastName;
 
+                // Fermer le formulaire
+                DialogResult = DialogResult.OK;
                 Close();
             }
             else

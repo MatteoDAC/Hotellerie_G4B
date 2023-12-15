@@ -66,19 +66,18 @@ public class DBconnector
         return listePersonnel;
     }
 
-    public static void SuppPersonnel(int id)
+    public static void SuppPersonnel(string firstName, string lastName)
     {
-        string connString = "server=localhost;user=root;database=g4b;port=3306;password=Pa$$w0rd;";
-
         using (MySqlConnection connection = new MySqlConnection(connString))
         {
             connection.Open();
 
-            string query = "DELETE FROM personnel WHERE id = @id";
+            string query = "DELETE FROM personnel WHERE firstName = @firstName AND lastName = @lastName";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@firstName", firstName);
+                cmd.Parameters.AddWithValue("@lastName", lastName);
 
                 cmd.ExecuteNonQuery();
             }
