@@ -1,6 +1,6 @@
-namespace Hotellerie_G4B
+namespace G4bDev_Hôtellerie
 {
-    internal static class Program
+    class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -12,6 +12,8 @@ namespace Hotellerie_G4B
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
+
+
         }
     }
 }
