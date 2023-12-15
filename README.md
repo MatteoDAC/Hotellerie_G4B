@@ -14,6 +14,12 @@ Sacha Volery, Théo Brocard, Matteo Da Cunha
 ### [Installation Visual Studio Code](https://learn.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2022) 
 ### [Installation HeidiSQL](https://www.heidisql.com/download.php)
 
+## Add MySql to your own project 
+
+For your project, you will need to add manually the MySql Package.
+
+Tools->Nuget Packet Manager->Package Manager Console
+
 
 ## Desciption du projet 
 
@@ -34,8 +40,6 @@ Sacha Volery, Théo Brocard, Matteo Da Cunha
 ##### Facture :
    ###### Les factures après séjour
     
-##### Service : 
-   ###### Les différant services possible + leurs coûts
 
 
 
