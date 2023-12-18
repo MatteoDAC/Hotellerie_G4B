@@ -83,4 +83,97 @@ public class DBconnector
             }
         }
     }
+
+    public static List<Chambre> GetListeChambres()
+    {
+        List<Chambre> listeChambres = new List<Chambre>();
+
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM room";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Chambre chambre = new Chambre(
+                            reader.GetString("nbRoom"),
+                            reader.GetString("type"),
+                            reader.GetString("disponibility"),
+                            reader.GetString("tarif")
+                        );
+                        listeChambres.Add(chambre);
+                    }
+                }
+            }
+        }
+
+        return listeChambres;
+    }
+
+    public static List<Client> GetListeClients()
+    {
+        List<Client> listeClients = new List<Client>();
+
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM client";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Client client = new Client(
+                            reader.GetString("firstName"),
+                            reader.GetString("lastName"),
+                            reader.GetString("nbTel"),
+                            reader.GetString("adress")
+                        );
+                        listeClients.Add(client);
+                    }
+                }
+            }
+        }
+
+        return listeClients;
+    }
+
+    public static void AttribuerChambreAUnClient(string nbRoom, string disponibilite, string firstName, string lastName)
+    {
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+
+            string updateRoomQuery = "UPDATE room SET disponibility = 'non' WHERE nbRoom = @nbRoom";
+            using (MySqlCommand updateRoomCmd = new MySqlCommand(updateRoomQuery, connection))
+            {
+                updateRoomCmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                updateRoomCmd.ExecuteNonQuery();
+            }
+
+            string updateClientQuery = "UPDATE client SET nbRoom = @nbRoom WHERE firstName = @firstName AND lastName = @lastName";
+            using (MySqlCommand updateClientCmd = new MySqlCommand(updateClientQuery, connection))
+            {
+                updateClientCmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                updateClientCmd.Parameters.AddWithValue("@firstName", firstName);
+                updateClientCmd.Parameters.AddWithValue("@lastName", lastName);
+                updateClientCmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    internal static void MettreAJourDisponibiliteChambre(double nbChambre, string v)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static void MettreAJourDisponibiliteChambre(string nbRoom, string v)
+    {
+        throw new NotImplementedException();
+    }
+
 }

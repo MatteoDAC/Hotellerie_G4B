@@ -32,25 +32,21 @@ namespace G4bDev_Hôtellerie
             listePersonnelListBox.SelectedIndexChanged += ListePersonnelListBox_SelectedIndexChanged;
             supprimerPersonnelSelectionneButton = new Button();
 
-            // Configuration des propriétés de la ListBox
             listePersonnelListBox.FormattingEnabled = true;
             listePersonnelListBox.Location = new System.Drawing.Point(10, 10);
             listePersonnelListBox.Size = new System.Drawing.Size(300, 200);
             listePersonnelListBox.SelectedIndexChanged += ListePersonnelListBox_SelectedIndexChanged;
 
-            // Configuration des propriétés du bouton
             supprimerPersonnelSelectionneButton.Location = new System.Drawing.Point(10, 220);
             supprimerPersonnelSelectionneButton.Size = new System.Drawing.Size(150, 30);
             supprimerPersonnelSelectionneButton.Text = "Supprimer";
             supprimerPersonnelSelectionneButton.Click += SupprimerPersonnelSelectionneButton_Click;
 
-            // Configuration du formulaire
             this.ClientSize = new System.Drawing.Size(320, 260);
             this.Controls.Add(listePersonnelListBox);
             this.Controls.Add(supprimerPersonnelSelectionneButton);
             this.Text = "Liste du Personnel";
 
-            // Écouteur d'événement pour le clic sur le bouton "Supprimer"
             supprimerPersonnelSelectionneButton.Click += SupprimerPersonnelSelectionneButton_Click;
 
             listePersonnelListBox.SelectedIndexChanged += ListePersonnelListBox_SelectedIndexChanged;
@@ -74,17 +70,13 @@ namespace G4bDev_Hôtellerie
         {
             if (listePersonnelListBox.SelectedItem != null)
             {
-                // Récupérer l'index de l'élément sélectionné
                 int selectedIndex = listePersonnelListBox.SelectedIndex;
 
-                // Récupérer l'objet Personnel correspondant à l'index sélectionné
                 Personnel personnelSelectionne = listePersonnel[selectedIndex];
 
-                // Définir les propriétés FirstNamePersonnelSelectionne et LastNamePersonnelSelectionne
                 FirstNamePersonnelSelectionne = personnelSelectionne.FirstName;
                 LastNamePersonnelSelectionne = personnelSelectionne.LastName;
 
-                // Fermer le formulaire
                 DialogResult = DialogResult.OK;
                 Close();
             }
