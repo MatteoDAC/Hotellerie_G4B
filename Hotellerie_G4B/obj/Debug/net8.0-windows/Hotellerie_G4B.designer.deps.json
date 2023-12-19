@@ -51,6 +51,43 @@
           }
         }
       },
+      "MetroFramework/1.2.0": {
+        "dependencies": {
+          "MetroFramework.Design": "1.2.0",
+          "MetroFramework.Fonts": "1.2.0",
+          "MetroFramework.RunTime": "1.2.0"
+        }
+      },
+      "MetroFramework.Design/1.2.0": {
+        "dependencies": {
+          "MetroFramework.RunTime": "1.2.0"
+        },
+        "runtime": {
+          "lib/net40/MetroFramework.Design.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
+        }
+      },
+      "MetroFramework.Fonts/1.2.0": {
+        "dependencies": {
+          "MetroFramework.RunTime": "1.2.0"
+        },
+        "runtime": {
+          "lib/net40/MetroFramework.Fonts.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
+        }
+      },
+      "MetroFramework.RunTime/1.2.0": {
+        "runtime": {
+          "lib/net40-Client/MetroFramework.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "Microsoft.Win32.SystemEvents/4.7.0": {
@@ -423,6 +460,34 @@
       "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
+    },
+    "MetroFramework/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DnpXEURpetxH9z+a1bf2T927Wbz+v0pmKMfpbhfcCggeGSUgYe/QtW5ZTsaPNkVyvhhqSDmEb4yhHNhjj6QyKw==",
+      "path": "metroframework/1.2.0",
+      "hashPath": "metroframework.1.2.0.nupkg.sha512"
+    },
+    "MetroFramework.Design/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vyC+vobWe8J1LMghPsB9mugAgSLAsSU7VcsRYHdWJJUtXxQUXar9S4nnTM8R/J04dWgZeYm2OTDG+gTXxWStRg==",
+      "path": "metroframework.design/1.2.0",
+      "hashPath": "metroframework.design.1.2.0.nupkg.sha512"
+    },
+    "MetroFramework.Fonts/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/j2kEDWnDfdPx41fN0nZugnwRzjaVysWg/6iUfj9rfyIIg+Ed1PVopc7OGXQeN3jPN7o9M9aFfDFzqtrH7/v8A==",
+      "path": "metroframework.fonts/1.2.0",
+      "hashPath": "metroframework.fonts.1.2.0.nupkg.sha512"
+    },
+    "MetroFramework.RunTime/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U2Gofe+cF3NYVNs5Y1S8n5r4OcVb9RtFPwcmp9XxVEnDAaPcF7BOYOR6u0dnPJGgqiLL/7vfzs3s9j++/8nslw==",
+      "path": "metroframework.runtime/1.2.0",
+      "hashPath": "metroframework.runtime.1.2.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",

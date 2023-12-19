@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace G4bDev_Hôtellerie
+﻿namespace G4bDev_Hôtellerie
 {
     public partial class FormListeChambres : Form
     {
-        private ListBox listeChambresListBox;
-        private List<Chambre> listeChambres;
+        private ListBox listeRoomListBox;
+        private List<Room> listeRoom;
+        private List<Client> listeClients;
+        private object roomSelectionnee;
 
         public FormListeChambres()
         {
@@ -17,59 +15,60 @@ namespace G4bDev_Hôtellerie
 
         private void InitializeComponent()
         {
-            listeChambresListBox = new ListBox();
+            listeRoomListBox = new ListBox();
             SuspendLayout();
             // 
-            // listeChambresListBox
+            // listeRoomListBox
             // 
-            listeChambresListBox.FormattingEnabled = true;
-            listeChambresListBox.ItemHeight = 15;
-            listeChambresListBox.Location = new Point(8, 34);
-            listeChambresListBox.Name = "listeChambresListBox";
-            listeChambresListBox.Size = new Size(300, 199);
-            listeChambresListBox.TabIndex = 0;
-            listeChambresListBox.DoubleClick += ListeChambresListBox_DoubleClick;
+            listeRoomListBox.FormattingEnabled = true;
+            listeRoomListBox.ItemHeight = 15;
+            listeRoomListBox.Location = new Point(8, 29);
+            listeRoomListBox.Name = "listeRoomListBox";
+            listeRoomListBox.Size = new Size(300, 199);
+            listeRoomListBox.TabIndex = 0;
+            listeRoomListBox.DoubleClick += ListeRoomListBox_DoubleClick;
             // 
             // FormListeChambres
             // 
             ClientSize = new Size(320, 260);
-            Controls.Add(listeChambresListBox);
+            Controls.Add(listeRoomListBox);
             Name = "FormListeChambres";
             Text = "Liste des Chambres";
+            Load += FormListeChambres_Load;
             ResumeLayout(false);
         }
 
         private void ChargerListeChambres()
         {
-            listeChambresListBox.Items.Clear(); 
+            listeRoomListBox.Items.Clear();
 
-            listeChambres = DBconnector.GetListeChambres();
+            listeRoom = DBconnector.GetListeRoom();
 
-            foreach (var chambre in listeChambres)
+            foreach (var Room in listeRoom)
             {
-                listeChambresListBox.Items.Add($"{chambre.NbRoom} - {chambre.Type} - Disponible : {chambre.Disponibility} - Tarif : {chambre.Tarif} €");
+                listeRoomListBox.Items.Add($"{Room.NbRoom} - {Room.Type} - Disponible : {Room.Disponibility} - Tarif : {Room.Tarif} €");
             }
         }
 
-       
 
-        private void ListeChambresListBox_DoubleClick(object sender, EventArgs e)
+
+        private void ListeRoomListBox_DoubleClick(object sender, EventArgs e)
         {
-            if (listeChambresListBox.SelectedItem != null)
+            if (listeRoomListBox.SelectedItem != null)
             {
-                // Récupérer l'index de l'élément sélectionné
-                int selectedIndex = listeChambresListBox.SelectedIndex;
+                int selectedIndex = listeRoomListBox.SelectedIndex;
 
-                // Récupérer l'objet Chambre correspondant à l'index sélectionné
-                Chambre chambreSelectionnee = listeChambres[selectedIndex];
+                Room roomSelectionnee = listeRoom[selectedIndex];
 
-                // Ouvrir la fenêtre des détails de la chambre
-                FormDetailsChambre formDetailsChambre = new FormDetailsChambre(chambreSelectionnee);
-                formDetailsChambre.ShowDialog();
-
-                // Rafraîchir la liste des chambres après la mise à jour (si nécessaire)
-                ChargerListeChambres();
+                // Ouvrir la fenêtre pour attribuer la chambre à un client
+                FormAttribuerChambre formAttribuerChambre = new FormAttribuerChambre(roomSelectionnee, listeClients);
+                DialogResult result = formAttribuerChambre.ShowDialog();
             }
+        }
+
+        private void FormListeChambres_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace G4bDev_Hôtellerie
 {
-    public class Chambre
+    public class Room
     {
         private string nbRoom;
         private string type;
         private string disponibility;
         private string tarif;
 
-        public Chambre(string nbRoom, string type, string disponibility, string tarif)
+        public Room(string nbRoom, string type, string disponibility, string tarif)
         {
             this.nbRoom = nbRoom;
             this.type = type;

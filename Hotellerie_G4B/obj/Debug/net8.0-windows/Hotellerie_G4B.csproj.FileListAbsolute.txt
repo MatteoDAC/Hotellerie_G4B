@@ -32,6 +32,9 @@ C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-win
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.pdb
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\Hotellerie_G4B.genruntimeconfig.cache
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\ref\Hotellerie_G4B.dll
-C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\FormDetailsChambre.resources
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\G4bDev_Hôtellerie.FormListeChambres.resources
 C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\FormListeClients.resources
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\bin\Debug\net8.0-windows\MetroFramework.Design.dll
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\bin\Debug\net8.0-windows\MetroFramework.Fonts.dll
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\bin\Debug\net8.0-windows\MetroFramework.dll
+C:\Users\pl07ccc\source\repos\Hotellerie_G4B\Hotellerie_G4B\obj\Debug\net8.0-windows\G4bDev_Hôtellerie.FormAttribuerChambre.resources

@@ -84,9 +84,9 @@ public class DBconnector
         }
     }
 
-    public static List<Chambre> GetListeChambres()
+    public static List<Room> GetListeRoom()
     {
-        List<Chambre> listeChambres = new List<Chambre>();
+        List<Room> listeRoom = new List<Room>();
 
         using (MySqlConnection connection = new MySqlConnection(connString))
         {
@@ -98,19 +98,19 @@ public class DBconnector
                 {
                     while (reader.Read())
                     {
-                        Chambre chambre = new Chambre(
+                        Room chambre = new Room(
                             reader.GetString("nbRoom"),
                             reader.GetString("type"),
                             reader.GetString("disponibility"),
                             reader.GetString("tarif")
                         );
-                        listeChambres.Add(chambre);
+                        listeRoom.Add(chambre);
                     }
                 }
             }
         }
 
-        return listeChambres;
+        return listeRoom;
     }
 
     public static List<Client> GetListeClients()
@@ -142,38 +142,73 @@ public class DBconnector
         return listeClients;
     }
 
-    public static void AttribuerChambreAUnClient(string nbRoom, string disponibilite, string firstName, string lastName)
+    public static void EnregistrerReservation(string firstNameClient, string lastNameClient, string nbRoom, string dateDebutFin)
     {
         using (MySqlConnection connection = new MySqlConnection(connString))
         {
             connection.Open();
 
-            string updateRoomQuery = "UPDATE room SET disponibility = 'non' WHERE nbRoom = @nbRoom";
-            using (MySqlCommand updateRoomCmd = new MySqlCommand(updateRoomQuery, connection))
+            // Vérifier si la chambre est disponible
+            if (IsChambreDisponible(nbRoom))
             {
-                updateRoomCmd.Parameters.AddWithValue("@nbRoom", nbRoom);
-                updateRoomCmd.ExecuteNonQuery();
-            }
+                // Insérer la réservation
+                string query = "INSERT INTO reservation (firstName, lastName, nbRoom, dateDebutFin) VALUES (@firstName, @lastName, @nbRoom, @dateDebutFin)";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstNameClient);
+                    cmd.Parameters.AddWithValue("@lastName", lastNameClient);
+                    cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                    cmd.Parameters.AddWithValue("@dateDebutFin", dateDebutFin);
+                    cmd.ExecuteNonQuery();
+                }
 
-            string updateClientQuery = "UPDATE client SET nbRoom = @nbRoom WHERE firstName = @firstName AND lastName = @lastName";
-            using (MySqlCommand updateClientCmd = new MySqlCommand(updateClientQuery, connection))
+                // Mettre à jour la disponibilité de la chambre
+                MettreAJourDisponibiliteChambre(nbRoom, "non");
+            }
+            else
             {
-                updateClientCmd.Parameters.AddWithValue("@nbRoom", nbRoom);
-                updateClientCmd.Parameters.AddWithValue("@firstName", firstName);
-                updateClientCmd.Parameters.AddWithValue("@lastName", lastName);
-                updateClientCmd.ExecuteNonQuery();
+                MessageBox.Show("La chambre sélectionnée n'est pas disponible.");
             }
         }
     }
 
-    internal static void MettreAJourDisponibiliteChambre(double nbChambre, string v)
+    private static bool IsChambreDisponible(string nbRoom)
     {
-        throw new NotImplementedException();
+        // Vérifier la disponibilité de la chambre dans la base de données
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT disponibility FROM room WHERE nbRoom = @nbRoom";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result.ToString() == "oui")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 
-    internal static void MettreAJourDisponibiliteChambre(string nbRoom, string v)
+    public static void MettreAJourDisponibiliteChambre(string nbRoom, string disponibility)
     {
-        throw new NotImplementedException();
+        // Mettre à jour la disponibilité de la chambre dans la base de données
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "UPDATE room SET disponibility = @disponibility WHERE nbRoom = @nbRoom";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@disponibility", disponibility);
+                cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
-
 }
