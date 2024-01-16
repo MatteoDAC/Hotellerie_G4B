@@ -44,6 +44,10 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "MetroFramework": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "MySQL.Data": {
               "target": "Package",
               "version": "[8.2.0, )"

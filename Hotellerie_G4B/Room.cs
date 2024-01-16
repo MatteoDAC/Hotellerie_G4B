@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace G4bDev_Hôtellerie
 {
-    public class Chambre
+    public class room
     {
-        private double nbChambre;
+        private string nbRoom;
         private string type;
-        private bool disponibilite;
+        private string disponibility;
         private string tarif;
 
-        public Chambre(double nbChambre, string type, bool disponibilite, string tarif)
+        public room(string nbRoom, string type, string disponibility, string tarif)
         {
-            this.nbChambre = nbChambre;
+            this.nbRoom = nbRoom;
             this.type = type;
-            this.disponibilite = disponibilite;
+            this.disponibility = disponibility;
             this.tarif = tarif;
         }
-        public double NbChambre
+        public string NbRoom
         {
             get
             {
-                return nbChambre;
+                return nbRoom;
             }
             set
             {
-                nbChambre = value;
+                nbRoom = value;
             }
         }
 
@@ -44,15 +44,15 @@ namespace G4bDev_Hôtellerie
             }
         }
 
-        public bool Disponibilite
+        public string Disponibility
         {
             get
             {
-                return disponibilite;
+                return disponibility;
             }
             set
             {
-                disponibilite = value;
+                disponibility = value;
             }
         }
 
@@ -78,5 +78,9 @@ namespace G4bDev_Hôtellerie
             throw new NotImplementedException();
         }
 
+        internal void AttribuerChambre(Client clientSelectionne)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

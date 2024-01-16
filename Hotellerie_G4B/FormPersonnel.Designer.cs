@@ -145,7 +145,6 @@ namespace G4bDev_Hôtellerie
                 string firstName = formListePersonnel.FirstNamePersonnelSelectionne;
                 string lastName = formListePersonnel.LastNamePersonnelSelectionne;
 
-                // Assurez-vous que les valeurs sont valides avant d'appeler la méthode de suppression
                 if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
                 {
                     DBconnector.SuppPersonnel(firstName, lastName);

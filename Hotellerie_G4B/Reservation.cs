@@ -8,20 +8,24 @@ namespace G4bDev_Hôtellerie
 {
     public class Reservation
     {
-        private float nbReservation;
+        private string nbReservation;
         private string client;
         private string dateDebutFin;
-        private float chambreReserve;
+        private string nbRoom;
+        private string firstName;
+        private string lastName;
 
-        public Reservation(float nbReservation, string client, string dateDebutFin, float chambreReserve)
+        public Reservation(string nbReservation, string client, string firstName, string lastName, string dateDebutFin, string nbRoom)
         {
             this.nbReservation = nbReservation;
             this.client = client;
             this.dateDebutFin = dateDebutFin;
-            this.chambreReserve = chambreReserve;
+            this.nbRoom = nbRoom;
+            this.nbRoom = firstName;
+            this.nbRoom = lastName;
         }
 
-        public float NbReservation
+        public string NbReservation
         {
             get
             {
@@ -56,5 +60,41 @@ namespace G4bDev_Hôtellerie
                 dateDebutFin = value;
             }
         }
+
+        public string NbRoom
+        {
+            get
+            {
+                return nbRoom;
+            }
+            set
+            {
+                nbRoom = value;
+            }
+        }
+        public string FirstName
+        {
+            get
+            {
+                return firstName;
+            }
+            set
+            {
+                firstName = value;
+            }
+        }
+        public string LastName
+        {
+            get
+            {
+                return lastName;
+            }
+            set
+            {
+                lastName = value;
+            }
+        }
+
+
     }
 }
