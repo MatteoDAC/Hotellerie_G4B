@@ -84,9 +84,9 @@ public class DBconnector
         }
     }
 
-    public static List<Room> GetListeRoom()
+    public static List<room> GetListeRoom()
     {
-        List<Room> listeRoom = new List<Room>();
+        List<room> listeRoom = new List<room>();
 
         using (MySqlConnection connection = new MySqlConnection(connString))
         {
@@ -98,7 +98,7 @@ public class DBconnector
                 {
                     while (reader.Read())
                     {
-                        Room chambre = new Room(
+                        room chambre = new room(
                             reader.GetString("nbRoom"),
                             reader.GetString("type"),
                             reader.GetString("disponibility"),
@@ -149,7 +149,7 @@ public class DBconnector
             connection.Open();
 
             // Vérifier si la chambre est disponible
-            if (IsChambreDisponible(nbRoom))
+            if (IsRoomDisponible(nbRoom))
             {
                 // Insérer la réservation
                 string query = "INSERT INTO reservation (firstName, lastName, nbRoom, dateDebutFin) VALUES (@firstName, @lastName, @nbRoom, @dateDebutFin)";
@@ -162,8 +162,6 @@ public class DBconnector
                     cmd.ExecuteNonQuery();
                 }
 
-                // Mettre à jour la disponibilité de la chambre
-                MettreAJourDisponibiliteChambre(nbRoom, "non");
             }
             else
             {
@@ -172,7 +170,7 @@ public class DBconnector
         }
     }
 
-    private static bool IsChambreDisponible(string nbRoom)
+    private static bool IsRoomDisponible(string nbRoom)
     {
         // Vérifier la disponibilité de la chambre dans la base de données
         using (MySqlConnection connection = new MySqlConnection(connString))
@@ -210,5 +208,10 @@ public class DBconnector
                 cmd.ExecuteNonQuery();
             }
         }
+    }
+
+    internal static void EnregistrerReservation(string nbRoom, string firstName, string lastName)
+    {
+        throw new NotImplementedException();
     }
 }

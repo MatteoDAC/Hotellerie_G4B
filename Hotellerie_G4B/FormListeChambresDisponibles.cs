@@ -3,7 +3,7 @@
     public partial class FormListeChambres : Form
     {
         private ListBox listeRoomListBox;
-        private List<Room> listeRoom;
+        private List<room> listeRoom;
         private List<Client> listeClients;
         private object roomSelectionnee;
 
@@ -56,13 +56,18 @@
         {
             if (listeRoomListBox.SelectedItem != null)
             {
+                // Récupérer l'index de l'élément sélectionné
                 int selectedIndex = listeRoomListBox.SelectedIndex;
 
-                Room roomSelectionnee = listeRoom[selectedIndex];
+                // Récupérer l'objet Chambre correspondant à l'index sélectionné
+                room chambreSelectionnee = listeRoom[selectedIndex];
 
-                // Ouvrir la fenêtre pour attribuer la chambre à un client
-                FormAttribuerChambre formAttribuerChambre = new FormAttribuerChambre(roomSelectionnee, listeClients);
-                DialogResult result = formAttribuerChambre.ShowDialog();
+                // Ouvrir la fenêtre des détails de la chambre en passant la chambre sélectionnée
+                FormAttribuerChambre formDetailsChambre = new FormAttribuerChambre(chambreSelectionnee);
+                formDetailsChambre.ShowDialog();
+
+                // Rafraîchir la liste des chambres après la mise à jour (si nécessaire)
+                ChargerListeChambres();
             }
         }
 

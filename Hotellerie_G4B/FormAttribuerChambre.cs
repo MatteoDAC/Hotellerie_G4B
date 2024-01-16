@@ -9,21 +9,20 @@ namespace G4bDev_Hôtellerie
         private Label labelDetailsChambre;
         private ComboBox listeClientsComboBox;
         private Button attribuerChambreButton;
-        private Room roomSelectionnee;
+        private room roomSelectionnee;
 
         public string FirstNameClient { get; private set; }
         public string LastNameClient { get; private set; }
 
-        public DialogResult DialogResult { get; private set; }
 
-        public FormAttribuerChambre(Room room, List<Client> listeClients)
+        public FormAttribuerChambre(room room, List<Client> listeClients)
         {
             InitializeComponent();
             AfficherDetailsChambre(room);
             ChargerListeClients(listeClients);
         }
 
-        public FormAttribuerChambre(Room roomSelectionnee)
+        public FormAttribuerChambre(room roomSelectionnee)
         {
             this.roomSelectionnee = roomSelectionnee;
         }
@@ -33,29 +32,50 @@ namespace G4bDev_Hôtellerie
             labelDetailsChambre = new Label();
             listeClientsComboBox = new ComboBox();
             attribuerChambreButton = new Button();
-
-            labelDetailsChambre.Location = new System.Drawing.Point(10, 10);
+            SuspendLayout();
+            // 
+            // labelDetailsChambre
+            // 
+            labelDetailsChambre.Location = new Point(10, 10);
             labelDetailsChambre.Name = "labelDetailsChambre";
-            labelDetailsChambre.Size = new System.Drawing.Size(400, 20);
+            labelDetailsChambre.Size = new Size(400, 20);
             labelDetailsChambre.TabIndex = 0;
             labelDetailsChambre.Text = "Détails de la chambre";
-
-            listeClientsComboBox.Location = new System.Drawing.Point(10, 60);
-            listeClientsComboBox.Size = new System.Drawing.Size(200, 23);
+            // 
+            // listeClientsComboBox
+            // 
             listeClientsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            attribuerChambreButton.Location = new System.Drawing.Point(10, 100);
-            attribuerChambreButton.Size = new System.Drawing.Size(150, 30);
+            listeClientsComboBox.Location = new Point(10, 60);
+            listeClientsComboBox.Name = "listeClientsComboBox";
+            listeClientsComboBox.Size = new Size(200, 23);
+            listeClientsComboBox.TabIndex = 1;
+            listeClientsComboBox.SelectedIndexChanged += listeClientsComboBox_SelectedIndexChanged;
+            // 
+            // attribuerChambreButton
+            // 
+            attribuerChambreButton.Location = new Point(10, 100);
+            attribuerChambreButton.Name = "attribuerChambreButton";
+            attribuerChambreButton.Size = new Size(150, 30);
+            attribuerChambreButton.TabIndex = 2;
             attribuerChambreButton.Text = "Attribuer la chambre";
             attribuerChambreButton.Click += AttribuerChambreButton_Click;
-
-            this.ClientSize = new System.Drawing.Size(400, 150);
-            this.Controls.Add(labelDetailsChambre);
-            this.Controls.Add(listeClientsComboBox);
-            this.Controls.Add(attribuerChambreButton);
+            // 
+            // FormAttribuerChambre
+            // 
+            ClientSize = new Size(400, 150);
+            Controls.Add(labelDetailsChambre);
+            Controls.Add(listeClientsComboBox);
+            Controls.Add(attribuerChambreButton);
+            Name = "FormAttribuerChambre";
+            ResumeLayout(false);
         }
 
-        private void AfficherDetailsChambre(Room room)
+        private void AttribuerChambreButton_Click(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AfficherDetailsChambre(room room)
         {
             // Afficher les détails de la chambre
             labelDetailsChambre.Text = $"Détails de la chambre : Chambre {room.NbRoom}, Type : {room.Type}, Disponibilité : {room.Disponibility}, Tarif : {room.Tarif}";
@@ -72,34 +92,36 @@ namespace G4bDev_Hôtellerie
             }
         }
 
-        private void AttribuerChambreButton_Click(object sender, EventArgs e)
+        private void AttribuerChambreButton_Click(object sender, EventArgs e, room room)
         {
-            string selectedClient = listeClientsComboBox.SelectedItem?.ToString();
-
-            if (!string.IsNullOrEmpty(selectedClient))
+            if (listeClientsComboBox.SelectedItem != null)
             {
-                string[] clientNames = selectedClient.Split(' ');
+                // Récupérer l'index du client sélectionné
+                int selectedIndex = listeClientsComboBox.SelectedIndex;
 
-                if (clientNames.Length >= 2)
-                {
-                    FirstNameClient = clientNames[0];
-                    LastNameClient = clientNames[1];
+                // Récupérer l'objet Client correspondant à l'index sélectionné
+                Client clientSelectionne = DBconnector.GetListeClients()[selectedIndex];
 
-                    // Enregistrez la réservation
-                    DBconnector.EnregistrerReservation(FirstNameClient, LastNameClient, roomSelectionnee.NbRoom, "DateDebutFin");
+                // Mettre à jour la chambre avec les informations du client
+                room.AttribuerChambre(clientSelectionne);
 
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Format de nom de client invalide.");
-                }
+                // Mettre à jour la disponibilité dans la base de données
+                DBconnector.MettreAJourDisponibiliteChambre(nbRoom: room.NbRoom, "non");
+
+                // Créer la réservation dans la base de données
+                DBconnector.EnregistrerReservation(room.NbRoom, clientSelectionne.FirstName, clientSelectionne.LastName);
+
+                MessageBox.Show($"Chambre {room.NbRoom} attribuée à {clientSelectionne.FirstName} {clientSelectionne.LastName}!");
             }
             else
             {
-                MessageBox.Show("Veuillez sélectionner un client pour attribuer la chambre.");
+                MessageBox.Show("Veuillez sélectionner un client pour réserver la chambre.");
             }
+        }
+
+        private void listeClientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
