@@ -66,22 +66,152 @@ public class DBconnector
         return listePersonnel;
     }
 
-    public static void SuppPersonnel(int id)
+    public static void SuppPersonnel(string firstName, string lastName)
     {
-        string connString = "server=localhost;user=root;database=g4b;port=3306;password=Pa$$w0rd;";
-
         using (MySqlConnection connection = new MySqlConnection(connString))
         {
             connection.Open();
 
-            string query = "DELETE FROM personnel WHERE id = @id";
+            string query = "DELETE FROM personnel WHERE firstName = @firstName AND lastName = @lastName";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@firstName", firstName);
+                cmd.Parameters.AddWithValue("@lastName", lastName);
 
                 cmd.ExecuteNonQuery();
             }
         }
+    }
+
+    public static List<room> GetListeRoom()
+    {
+        List<room> listeRoom = new List<room>();
+
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM room";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        room chambre = new room(
+                            reader.GetString("nbRoom"),
+                            reader.GetString("type"),
+                            reader.GetString("disponibility"),
+                            reader.GetString("tarif")
+                        );
+                        listeRoom.Add(chambre);
+                    }
+                }
+            }
+        }
+
+        return listeRoom;
+    }
+
+    public static List<Client> GetListeClients()
+    {
+        List<Client> listeClients = new List<Client>();
+
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT * FROM client";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Client client = new Client(
+                            reader.GetString("firstName"),
+                            reader.GetString("lastName"),
+                            reader.GetString("nbTel"),
+                            reader.GetString("adress")
+                        );
+                        listeClients.Add(client);
+                    }
+                }
+            }
+        }
+
+        return listeClients;
+    }
+
+    public static void EnregistrerReservation(string firstNameClient, string lastNameClient, string nbRoom, string dateDebutFin)
+    {
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+
+            // Vérifier si la chambre est disponible
+            if (IsRoomDisponible(nbRoom))
+            {
+                // Insérer la réservation
+                string query = "INSERT INTO reservation (firstName, lastName, nbRoom, dateDebutFin) VALUES (@firstName, @lastName, @nbRoom, @dateDebutFin)";
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstNameClient);
+                    cmd.Parameters.AddWithValue("@lastName", lastNameClient);
+                    cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                    cmd.Parameters.AddWithValue("@dateDebutFin", dateDebutFin);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("La chambre sélectionnée n'est pas disponible.");
+            }
+        }
+    }
+
+    private static bool IsRoomDisponible(string nbRoom)
+    {
+        // Vérifier la disponibilité de la chambre dans la base de données
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "SELECT disponibility FROM room WHERE nbRoom = @nbRoom";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result.ToString() == "oui")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+
+    public static void MettreAJourDisponibiliteChambre(string nbRoom, string disponibility)
+    {
+        // Mettre à jour la disponibilité de la chambre dans la base de données
+        using (MySqlConnection connection = new MySqlConnection(connString))
+        {
+            connection.Open();
+            string query = "UPDATE room SET disponibility = @disponibility WHERE nbRoom = @nbRoom";
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@disponibility", disponibility);
+                cmd.Parameters.AddWithValue("@nbRoom", nbRoom);
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    internal static void EnregistrerReservation(string nbRoom, string firstName, string lastName)
+    {
+        throw new NotImplementedException();
     }
 }

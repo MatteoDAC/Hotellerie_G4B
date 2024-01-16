@@ -15,6 +15,7 @@ namespace G4bDev_Hôtellerie
         private TextBox adresseTextBox;
         private Button enregistrerClientButton;
         private Button ouvrirFormPersonnelButton;
+        private Button listeChambresButton;
 
         public MainForm()
         {
@@ -33,6 +34,7 @@ namespace G4bDev_Hôtellerie
             adresseTextBox = new TextBox();
             enregistrerClientButton = new Button();
             ouvrirFormPersonnelButton = new Button();
+            listeChambresButton = new Button();
             SuspendLayout();
             // 
             // labelNom
@@ -106,12 +108,21 @@ namespace G4bDev_Hôtellerie
             // 
             // ouvrirFormPersonnelButton
             // 
-            ouvrirFormPersonnelButton.Location = new Point(120, 212);
+            ouvrirFormPersonnelButton.Location = new Point(120, 196);
             ouvrirFormPersonnelButton.Name = "ouvrirFormPersonnelButton";
             ouvrirFormPersonnelButton.Size = new Size(150, 30);
             ouvrirFormPersonnelButton.TabIndex = 9;
             ouvrirFormPersonnelButton.Text = "Ouvrir Personnel";
             ouvrirFormPersonnelButton.Click += OuvrirFormPersonnelButton_Click;
+            // 
+            // listeChambresButton
+            // 
+            listeChambresButton.Location = new Point(120, 246);
+            listeChambresButton.Name = "listeChambresButton";
+            listeChambresButton.Size = new Size(150, 30);
+            listeChambresButton.TabIndex = 10;
+            listeChambresButton.Text = "Liste des Chambres";
+            listeChambresButton.Click += ListeChambresButton_Click;
             // 
             // MainForm
             // 
@@ -126,6 +137,7 @@ namespace G4bDev_Hôtellerie
             Controls.Add(adresseTextBox);
             Controls.Add(enregistrerClientButton);
             Controls.Add(ouvrirFormPersonnelButton);
+            Controls.Add(listeChambresButton);
             Name = "MainForm";
             Text = "Enregistrement Client";
             Load += MainForm_Load;
@@ -142,17 +154,14 @@ namespace G4bDev_Hôtellerie
 
             Client nouveauClient = new Client(nom, prenom, numeroTelephone, adresse);
 
-            // Appeler la méthode Enregistrer pour enregistrer le client dans la base de données
             nouveauClient.Enregistrer();
 
-            // Afficher un message de succès
             MessageBox.Show("Nouveau client enregistré avec succès!");
         }
 
 
         private void OuvrirFormPersonnelButton_Click(object sender, EventArgs e)
         {
-            // Créez une instance du formulaire Personnel et affichez-le
             FormPersonnel formPersonnel = new FormPersonnel();
             formPersonnel.Show();
         }
@@ -160,6 +169,12 @@ namespace G4bDev_Hôtellerie
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ListeChambresButton_Click(object sender, EventArgs e)
+        {
+            FormListeChambres formListeChambres = new FormListeChambres();
+            formListeChambres.Show();
         }
     }
 }

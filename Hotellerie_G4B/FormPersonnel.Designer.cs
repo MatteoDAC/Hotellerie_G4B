@@ -133,7 +133,6 @@ namespace G4bDev_Hôtellerie
 
         private void supprimerPersonnelButton_Click(object sender, EventArgs e)
         {
-
             if (formListePersonnel == null)
             {
                 formListePersonnel = new FormListePersonnel();
@@ -143,11 +142,20 @@ namespace G4bDev_Hôtellerie
 
             if (result == DialogResult.OK)
             {
-                int id = formListePersonnel.Id;
-                DBconnector.SuppPersonnel(id);
+                string firstName = formListePersonnel.FirstNamePersonnelSelectionne;
+                string lastName = formListePersonnel.LastNamePersonnelSelectionne;
 
-                MessageBox.Show("Personnel supprimé avec succès!");
+                if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+                {
+                    DBconnector.SuppPersonnel(firstName, lastName);
+                    MessageBox.Show("Personnel supprimé avec succès!");
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner un personnel à supprimer.");
+                }
             }
         }
+
     }
 }
